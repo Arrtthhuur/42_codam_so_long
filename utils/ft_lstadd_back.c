@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_next_line.h                                    :+:    :+:            */
+/*   ft_lstadd_back.c                                   :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/09/16 12:41:32 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/10/25 13:32:18 by abeznik       ########   odam.nl         */
+/*   Created: 2020/11/22 14:37:18 by abeznik       #+#    #+#                 */
+/*   Updated: 2021/10/25 17:46:48 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../includes/lists.h"
 
-# include <stddef.h> // size_t
-
-# define MAX_FD 1024
-# define BUFFER_SIZE 9999
-
-char	*get_next_line(int fd);
-
-size_t	ft_strlen(const char *s);
-
-char	*ft_strdup(const char *s1);
-
-char	*ft_strchr(const char *s, int c);
-
-char	*ft_strjoin(char const *s1, char const *s2);
-
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-
-#endif
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	if (!lst || !new)
+		return ;
+	if (!*lst)
+		*lst = new;
+	else
+		ft_lstlast(*lst)->next = new;
+}

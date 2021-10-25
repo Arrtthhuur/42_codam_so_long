@@ -19,37 +19,75 @@
 // #include <sys/stat.h>
 #include <fcntl.h> // open
 
-int	main(int argc, char *argv[])
+t_list	*add_link(t_list *list, char *line)
 {
-	// char	*file_name;
+	t_list	*tmp;
+
+	tmp = malloc(sizeof(t_list));
+	if (tmp)
+	{
+		tmp->content = line;
+		tmp->next = list;
+	}
+	return (tmp);
+}
+
+static void	print_list(t_list *list)
+{
+	while (list)
+	{
+		printf("%s", list->content);
+		list = list->next;
+	}
+}
+
+static int	map_read(int fd)
+{
+	char	*line;
+	t_list	*list;
+	t_list	**map;
+
+	list = NULL;
+	// map = NULL;
+	line = get_next_line(fd);
+	while (line)
+	{
+		list = ft_lstnew(line);
+		// list = add_link(list, line);
+		ft_lstadd_front(map, list);
+		line = get_next_line(fd);
+	}
+	print_list(*map);
+	printf("\nsize: %d\n", ft_lstsize(list));
+	return (1);
+}
+
+// int	main(int argc, char *argv[])
+// {
+// 	int		fd;
+// 	int		fd_copy;
+
+// 	if (argc < 2)
+// 	{
+// 		printf("Error\nNo map entered!");
+// 	}
+// 	else
+// 	{
+// 		fd = open(argv[1], O_RDONLY);
+// 		// fd_copy = open(argv[1], O_RDONLY);
+// 		// map_check(fd, fd_copy);
+// 		map_read(fd);
+// 		close(fd);
+// 	}
+// 	return (0);
+// }
+
+int	main(void)
+{
 	int		fd;
 
-	// printf("This program was called with \"%s\".\n", argv[0]);
-	// if (argc == 1)
-	// {
-	// 	count = 1;
-	// 	while (count < argc)
-	// 	{
-	// 		printf("argv[%d] = %s\n", count, argv[count]);
-	// 		count++;
-	// 	}
-	// }
-	// else
-	// {
-	// 	printf("The command had no others arguments.\n");
-	// }
-
-	// file_name = "../maps/simple_valid.ber";
-	if (argc < 1)
-	{
-		printf("Error\nNo map entered!");
-	}
-	else
-	{
-		printf("%s\n", argv[1]);
-		fd = open(argv[1], O_RDONLY);
-		so_long(fd);
-		close(fd);
-	}
+	fd = open("simple_valid.ber", O_RDONLY);
+	map_read(fd);
+	close(fd);
 	return (0);
 }

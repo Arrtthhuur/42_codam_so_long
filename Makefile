@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/10/21 21:51:28 by abeznik       ########   odam.nl          #
+#    Updated: 2021/10/25 17:46:25 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ SRC_DIR	=	srcs
 
 UTILS	=	get_next_line.c \
 			get_next_line_utils.c \
+			ft_lstnew.c \
+			ft_lstadd_front.c \
+			ft_lstsize.c \
 
 UTL_DIR	=	utils
 
@@ -34,7 +37,6 @@ OBJ_U 	=	$(patsubst %, $(OBJ_DIR)/utils/%, $(UTILS:.c=.o))
 
 CC		=	gcc
 RM		=	rm -f
-FLAGS	=	-Werror -Wextra -Wall
 
 all:		$(NAME)
 
@@ -49,8 +51,11 @@ $(OBJ_DIR)/utils/%.o: $(UTL_DIR)/%.c
 	@mkdir -p obj/utils
 	$(CC) -c $(FLAGS) -I $(HEADER) -o $@ $<
 
-test:
+test:	$(OBJ_S) $(OBJ_U)
 	$(CC) -o so_long.out $(OBJ_S) $(OBJ_U)
+
+simple_valid:
+	./so_long.out simple_valid.ber
 
 clean:
 	$(RM) $(OBJ_S) $(OBJ_U)
@@ -62,6 +67,10 @@ fclean: clean
 del: fclean
 	$(RM) *.out
 
+debug:
+	gcc -g3 -o so_long.out $(SRCS) $(UTLS)
+	lldb so_long.out
+	
 re: fclean all
 
 .PHONY: fclean re all clean

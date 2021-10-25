@@ -14,11 +14,14 @@
 # define SOLONG_H
 
 # include "get_next_line.h"
+# include "lists.h"
 
-int	main(int argc, char *argv[]);
+// int	main(int argc, char *argv[]);
 
-int	so_long(int fd);
+int	main(void);
 
-int	map_read(char *file_name);
+int	so_long(int fd, int fd_copy);
+
+int map_check(int fd, int fd_copy);
 
 #endif
