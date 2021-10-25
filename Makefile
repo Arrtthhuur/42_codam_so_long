@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/10/25 17:46:25 by abeznik       ########   odam.nl          #
+#    Updated: 2021/10/25 19:16:38 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ $(OBJ_DIR)/utils/%.o: $(UTL_DIR)/%.c
 
 test:	$(OBJ_S) $(OBJ_U)
 	$(CC) -o so_long.out $(OBJ_S) $(OBJ_U)
+	./so_long.out
 
 simple_valid:
 	./so_long.out simple_valid.ber

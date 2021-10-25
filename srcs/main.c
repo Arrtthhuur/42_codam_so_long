@@ -48,7 +48,6 @@ static int	map_read(int fd)
 	t_list	**map;
 
 	list = NULL;
-	// map = NULL;
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -57,8 +56,13 @@ static int	map_read(int fd)
 		ft_lstadd_front(map, list);
 		line = get_next_line(fd);
 	}
-	print_list(*map);
-	printf("\nsize: %d\n", ft_lstsize(list));
+	while (*map)
+	{
+		printf("%s", map->content);
+		map = map->next;
+		// print_list(*map);
+	}
+	printf("size: %d\n", ft_lstsize(*map));
 	return (1);
 }
 
