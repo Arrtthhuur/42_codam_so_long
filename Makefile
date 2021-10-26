@@ -6,14 +6,14 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/10/26 20:39:19 by abeznik       ########   odam.nl          #
+#    Updated: 2021/10/26 21:16:42 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	so_long
 
 SOURCES	=	main.c \
-			map_read.c \
+			map_parsing.c \
 
 SRC_DIR	=	srcs
 
@@ -59,6 +59,12 @@ test:	$(OBJ_S) $(OBJ_U)
 
 simple_valid:
 	./so_long.out simple_valid.ber
+	
+min_valid:
+	./so_long.out min_valid.ber
+
+simple_invalid:
+	./so_long.out invalid.ber
 
 clean:
 	$(RM) $(OBJ_S) $(OBJ_U)

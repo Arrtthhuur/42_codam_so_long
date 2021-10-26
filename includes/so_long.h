@@ -21,8 +21,11 @@
 
 int	main(void);
 
-int	so_long(int fd, int fd_copy);
+int	so_long(int fd);
 
-int map_check(int fd, int fd_copy);
+/*
+** Map related functions.
+*/
+int	map_read(int fd);
 
 #endif
