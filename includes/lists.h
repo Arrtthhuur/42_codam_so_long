@@ -17,11 +17,12 @@
 
 typedef struct		s_list
 {
+	size_t			line_nb;
 	char			*content;
 	struct s_list	*next;
 }					t_list;
 
-t_list				*ft_lstnew(void *content);
+t_list				*ft_lstnew(void *content, size_t line_nb);
 
 void				ft_lstadd_front(t_list **lst, t_list *new);
 

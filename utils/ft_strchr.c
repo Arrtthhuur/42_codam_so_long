@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstnew.c                                        :+:    :+:            */
+/*   ft_strchr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/22 14:11:24 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/10/26 17:13:30 by abeznik       ########   odam.nl         */
+/*   Created: 2020/10/26 16:14:55 by abeznik       #+#    #+#                 */
+/*   Updated: 2021/10/26 20:21:44 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/lists.h"
+#include "../includes/libft.h"
 
-#include <stdlib.h> //malloc
-
-t_list			*ft_lstnew(void *content, size_t line_nb)
+char	*ft_strchr(const char *s, int c)
 {
-	t_list	*element;
+	int		i;
+	char	*str;
 
-	element = (t_list *)malloc(sizeof(t_list));
-	if (!element)
-		return (NULL);
-	element->content = content;
-	element->line_nb = line_nb;
-	element->next = NULL;
-	return (element);
+	str = (char *)s;
+	if (*str == (char)c)
+		return (str);
+	i = 1;
+	while (str[i - 1])
+	{
+		if (str[i] == (char)c)
+			return (str + i);
+		i++;
+	}
+	return (NULL);
 }

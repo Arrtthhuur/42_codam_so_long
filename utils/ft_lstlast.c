@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_lstnew.c                                        :+:    :+:            */
+/*   ft_lstlast.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/22 14:11:24 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/10/26 17:13:30 by abeznik       ########   odam.nl         */
+/*   Created: 2020/11/22 14:34:19 by abeznik       #+#    #+#                 */
+/*   Updated: 2021/10/26 19:33:39 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/lists.h"
 
-#include <stdlib.h> //malloc
-
-t_list			*ft_lstnew(void *content, size_t line_nb)
+t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	*element;
-
-	element = (t_list *)malloc(sizeof(t_list));
-	if (!element)
+	if (!lst)
 		return (NULL);
-	element->content = content;
-	element->line_nb = line_nb;
-	element->next = NULL;
-	return (element);
+	while (lst)
+	{
+		if (!lst->next)
+			return (lst);
+		lst = lst->next;
+	}
+	return (lst);
 }

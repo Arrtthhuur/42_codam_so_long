@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/10/25 19:16:38 by abeznik       ########   odam.nl          #
+#    Updated: 2021/10/26 20:39:19 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ UTILS	=	get_next_line.c \
 			get_next_line_utils.c \
 			ft_lstnew.c \
 			ft_lstadd_front.c \
+			ft_lstadd_back.c \
 			ft_lstsize.c \
+			ft_lstlast.c \
 
 UTL_DIR	=	utils
 
