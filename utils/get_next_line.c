@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/16 12:26:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/10/25 13:31:58 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/11/06 17:59:08 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	*gnl_new_line(char **line, char **save)
 	tmp_save = *save;
 	if (ft_strchr(*save, '\n'))
 	{
-		*line = ft_substr(*save, 0, len + 1);
+		*line = ft_substr(*save, 0, len);
 		*save = ft_strdup(*save + len + 1);
 		if (!*save)
 			return (NULL);

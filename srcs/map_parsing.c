@@ -22,7 +22,7 @@ static void	print_list(t_list *list)
 {
 	while (list)
 	{
-		printf("[%zu] %s", list->line_nb, list->content);
+		printf("[%zu] %s\n", list->line_nb, list->content);
 		list = list->next;
 	}
 }
@@ -35,7 +35,7 @@ static size_t	compute_line_len(t_list *list)
 	size_t	len;
 
 	len = 0;
-	while (list->content[len] != '\r')
+	while (list->content[len] != '\n')
 		len++;
 	return (len);
 }
@@ -59,7 +59,7 @@ static int	check_ecp(t_list *list, size_t line_nb)
 			if (ft_strchr(list->content, 'E'))
 				exist_e += 1;
 			if (ft_strchr(list->content, 'C'))
-				exist_c += 1;		
+				exist_c += 1;
 			if (ft_strchr(list->content, 'P'))
 				exist_p += 1;
 		}
@@ -136,7 +136,8 @@ static int	check_walls(t_list *list, size_t line_nb, size_t line_len)
 			i = 0;
 			while (i < line_len)
 			{
-				if (list->content[0] != '1' || list->content[line_len - 1] != '1')
+				if (list->content[0] != '1'
+					|| list->content[line_len - 1] != '1')
 				{
 					printf("Error\nInvalid map (see surrounding walls)\n");
 					return (0);
@@ -159,27 +160,35 @@ int	map_read(int fd)
 	size_t	line_len;
 	char	*line;
 	t_list	*list;
-	t_list	**map;
+	t_list	*map;
 
 	list = NULL;
-	line = get_next_line(fd);
 	line_nb = 0;
+	line_len = 0;
+	line = get_next_line(fd);
+	line_len = ft_strlen(line) - 1;
 	while (line)
 	{
+		// list = ft_lstnew(list, line, line_nb);
 		list = ft_lstnew(line, line_nb);
+		printf("%s\n", list->content);
+		// print_list(list);
 		line_nb++;
 		ft_lstadd_back(map, list);
+		// ft_lstadd_front(map, list);
+		// printf("%s", line);
 		line = get_next_line(fd);
 	}
-	print_list(*map);
-	printf("\n");
-	line_len = compute_line_len(*map);
-	if (!check_len(*map, line_nb, line_len))
-		return (0);
-	if (!check_walls(*map, line_nb, line_len))
-		return (0);
-	if (!check_ecp(*map, line_nb))
-		return (0);
-	printf("The map contains %zu lines of %zu length\n", line_nb, line_len);
+	// print_list(map);
+	// print_list(*map);
+	// printf("\n");
+	// line_len = compute_line_len(*map);
+	// if (!check_len(*map, line_nb, line_len))
+	// 	return (0);
+	// if (!check_walls(*map, line_nb, line_len))
+	// 	return (0);
+	// if (!check_ecp(*map, line_nb))
+	// 	return (0);
+	printf("The map contains %zu lines of %zu length.\n", line_nb, line_len);
 	return (1);
 }

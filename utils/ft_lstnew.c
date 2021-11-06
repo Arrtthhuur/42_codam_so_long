@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/22 14:11:24 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/10/26 17:13:30 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/11/06 18:39:27 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include <stdlib.h> //malloc
 
-t_list			*ft_lstnew(void *content, size_t line_nb)
+t_list	*ft_lstnew(void *content, size_t line_nb)
 {
 	t_list	*element;
 
@@ -25,4 +25,18 @@ t_list			*ft_lstnew(void *content, size_t line_nb)
 	element->line_nb = line_nb;
 	element->next = NULL;
 	return (element);
+}
+
+t_list	*add_link(t_list *list, char *content, size_t line_nb)
+{
+	t_list	*tmp;
+
+	tmp = malloc(sizeof(t_list));
+	if (tmp)
+	{
+		tmp->line_nb = line_nb;
+		tmp->content = content;
+		tmp->next = list;
+	}
+	return (tmp);
 }

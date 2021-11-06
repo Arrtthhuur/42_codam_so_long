@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/10/26 21:16:42 by abeznik       ########   odam.nl          #
+#    Updated: 2021/11/06 16:51:15 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,7 @@ RM		=	rm -f
 all:		$(NAME)
 
 $(NAME):	$(OBJ_S) $(OBJ_U)
-	ar cr $(NAME) $(OBJ_S) $(OBJ_U)
+	$(CC) -o $(NAME) $(OBJ_S) $(OBJ_U)
 
 $(OBJ_DIR)/srcs/%.o: $(SRC_DIR)/%.c
 	@mkdir -p obj/srcs
@@ -54,17 +54,17 @@ $(OBJ_DIR)/utils/%.o: $(UTL_DIR)/%.c
 	$(CC) -c $(FLAGS) -I $(HEADER) -o $@ $<
 
 test:	$(OBJ_S) $(OBJ_U)
-	$(CC) -o so_long.out $(OBJ_S) $(OBJ_U)
-	./so_long.out
+	$(CC) -o $(NAME) $(OBJ_S) $(OBJ_U)
+	./so_long
 
 simple_valid:
-	./so_long.out simple_valid.ber
+	./so_long simple_valid.ber
 	
 min_valid:
-	./so_long.out min_valid.ber
+	./so_long min_valid.ber
 
 simple_invalid:
-	./so_long.out invalid.ber
+	./so_long invalid.ber
 
 clean:
 	$(RM) $(OBJ_S) $(OBJ_U)

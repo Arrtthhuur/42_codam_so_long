@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/16 12:41:32 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/10/25 13:32:18 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/11/06 17:38:47 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stddef.h> // size_t
 
 # define MAX_FD 1024
-# define BUFFER_SIZE 9999
+# define BUFFER_SIZE 1
 
 char	*get_next_line(int fd);
 

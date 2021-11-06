@@ -13,15 +13,13 @@
 #ifndef SOLONG_H
 # define SOLONG_H
 
+# include "../mlx/mlx.h"
 # include "get_next_line.h"
 # include "lists.h"
 # include "libft.h"
 
 // int	main(int argc, char *argv[]);
-
 int	main(void);
-
-int	so_long(int fd);
 
 /*
 ** Map related functions.
