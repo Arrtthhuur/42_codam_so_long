@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/16 12:44:01 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/10/21 21:45:58 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/11/07 16:46:38 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ char	*ft_strdup(const char *s1)
 	s2 = (char *) malloc(ft_strlen(s1) + 1);
 	if (!s2)
 		return (NULL);
-	// return (NULL);
 	i = 0;
 	while (s1[i] != 0)
 	{
@@ -73,7 +72,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	strjoin = (char *) malloc(sjoin_len);
 	if (!strjoin)
 		return (NULL);
-	// return (NULL);
 	index = 0;
 	while (*s1 != '\0')
 		strjoin[index++] = *s1++;
@@ -92,7 +90,6 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	if (!s)
 		return (NULL);
 	slen = ft_strlen(s);
-	// return (NULL);
 	if (s == NULL)
 		return (NULL);
 	if (start > slen)

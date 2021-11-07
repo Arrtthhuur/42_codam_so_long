@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/11/06 16:51:15 by abeznik       ########   odam.nl          #
+#    Updated: 2021/11/07 16:43:58 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME	=	so_long
 
 SOURCES	=	main.c \
 			map_parsing.c \
+			map_check.c \
 
 SRC_DIR	=	srcs
 
@@ -22,8 +23,6 @@ UTILS	=	get_next_line.c \
 			ft_lstnew.c \
 			ft_lstadd_front.c \
 			ft_lstadd_back.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
 
 UTL_DIR	=	utils
 
@@ -75,6 +74,7 @@ fclean: clean
 
 del: fclean
 	$(RM) *.out
+	rm -rf *.dSYM
 
 debug:
 	gcc -g3 -o so_long.out $(SRCS) $(UTLS)

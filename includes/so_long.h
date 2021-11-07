@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SOLONG_H
-# define SOLONG_H
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
 # include "../mlx/mlx.h"
 # include "get_next_line.h"
@@ -19,11 +19,14 @@
 # include "libft.h"
 
 // int	main(int argc, char *argv[]);
-int	main(void);
+int		main(void);
 
 /*
-** Map related functions.
+** Map read and check related functions.
 */
-int	map_read(int fd);
+int		map_read(int fd);
+int		check_ecp(t_list *list, size_t line_nb);
+int		check_len(t_list *list, size_t line_nb, size_t line_len);
+int		check_walls(t_list *list, size_t line_nb, size_t line_len);
 
 #endif
