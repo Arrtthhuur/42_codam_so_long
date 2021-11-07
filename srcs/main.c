@@ -38,8 +38,9 @@ int	main(void)
 {
 	int		fd;
 
-	fd = open("simple_valid.ber", O_RDONLY);
-	// fd = open("minimal_valid.ber", O_RDONLY);
+	// fd = open("simple_valid.ber", O_RDONLY);
+	fd = open("min_valid.ber", O_RDONLY);
+	// fd = open("invalid.ber", O_RDONLY);
 	map_read(fd);
 	close(fd);
 	return (0);
