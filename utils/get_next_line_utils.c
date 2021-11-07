@@ -12,7 +12,7 @@
 
 #include "../includes/get_next_line.h"
 
-#include <stdlib.h> // malloc
+#include <stdlib.h> //malloc
 
 size_t	ft_strlen(const char *s)
 {

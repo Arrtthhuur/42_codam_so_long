@@ -12,10 +12,10 @@
 
 #include "../includes/so_long.h"
 
-#include <stdio.h> // printf
-#include <unistd.h> // close
-#include <stdlib.h> // free
-#include <fcntl.h> // open
+#include <stdio.h> //printf
+#include <unistd.h> //close
+#include <stdlib.h> //free
+#include <fcntl.h> //open
 
 // int	main(int argc, char *argv[])
 // {

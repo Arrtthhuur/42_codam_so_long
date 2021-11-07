@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/11/07 16:43:58 by abeznik       ########   odam.nl          #
+#    Updated: 2021/11/07 17:35:39 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,9 @@ NAME	=	so_long
 
 SOURCES	=	main.c \
 			map_parsing.c \
-			map_check.c \
+			map_len.c \
+			map_walls.c \
+			map_ecp.c \
 
 SRC_DIR	=	srcs
 
@@ -38,19 +40,20 @@ OBJ_U 	=	$(patsubst %, $(OBJ_DIR)/utils/%, $(UTILS:.c=.o))
 
 CC		=	gcc
 RM		=	rm -f
+CFLAGS	=	-Wall -Werror -Wextra
 
 all:		$(NAME)
 
 $(NAME):	$(OBJ_S) $(OBJ_U)
-	$(CC) -o $(NAME) $(OBJ_S) $(OBJ_U)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_S) $(OBJ_U)
 
 $(OBJ_DIR)/srcs/%.o: $(SRC_DIR)/%.c
 	@mkdir -p obj/srcs
-	$(CC) -c $(FLAGS) -I $(HEADER) -o $@ $<
+	$(CC) -c $(CFLAGS) -I $(HEADER) -o $@ $<
 
 $(OBJ_DIR)/utils/%.o: $(UTL_DIR)/%.c
 	@mkdir -p obj/utils
-	$(CC) -c $(FLAGS) -I $(HEADER) -o $@ $<
+	$(CC) -c $(CFLAGS) -I $(HEADER) -o $@ $<
 
 test:	$(OBJ_S) $(OBJ_U)
 	$(CC) -o $(NAME) $(OBJ_S) $(OBJ_U)

@@ -12,8 +12,7 @@
 
 #include "../includes/so_long.h"
 
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h> //printf
 
 /*
 ** Function to print the linked list.
@@ -28,8 +27,8 @@ static void	print_list(t_list *list)
 }
 
 /*
-** Function to perform checks: length of lines, presence of walls,
-** and exisiting at least one E, one C, and one P.
+** Function to perform checks: length of lines, presence of walls
+** and existing at least one E, one C and one P.
 */
 static int	perform_checks(t_list *head, size_t line_nb, size_t line_len)
 {
@@ -51,9 +50,9 @@ int	map_read(int fd)
 {
 	size_t	line_nb;
 	size_t	line_len;
-	char	*line;
 	t_list	*list;
 	t_list	*head;
+	char	*line;
 
 	head = NULL;
 	list = NULL;

@@ -13,7 +13,7 @@
 #ifndef LISTS_H
 # define LISTS_H
 
-# include <stddef.h>
+# include <stddef.h> //size_t
 
 typedef struct s_list
 {

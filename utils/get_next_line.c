@@ -6,14 +6,14 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/16 12:26:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/11/06 17:59:08 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/11/07 17:39:09 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/get_next_line.h"
 
-#include <unistd.h> // read
-#include <stdlib.h> // free
+#include <unistd.h> //read
+#include <stdlib.h> //free
 
 static void	gnl_free(char *ptr)
 {
