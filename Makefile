@@ -6,11 +6,13 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/11/07 17:35:39 by abeznik       ########   odam.nl          #
+#    Updated: 2021/11/07 17:47:12 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	so_long
+
+MLX_NAME = libmlx.dylib
 
 SOURCES	=	main.c \
 			map_parsing.c \
@@ -44,8 +46,12 @@ CFLAGS	=	-Wall -Werror -Wextra
 
 all:		$(NAME)
 
-$(NAME):	$(OBJ_S) $(OBJ_U)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJ_S) $(OBJ_U)
+$(NAME):	$(MLX_NAME) $(OBJ_S) $(OBJ_U)
+	$(CC) $(OBJ_S) $(OBJ_U) -L. -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+
+$(MLX_NAME):
+	make -C ./mlx
+	cp ./mlx/libmlx.dylib libmlx.dylib
 
 $(OBJ_DIR)/srcs/%.o: $(SRC_DIR)/%.c
 	@mkdir -p obj/srcs
@@ -74,14 +80,16 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) $(MLX_NAME)
+	make clean -C ./mlx
 
 del: fclean
 	$(RM) *.out
 	rm -rf *.dSYM
 
 debug:
-	gcc -g3 -o so_long.out $(SRCS) $(UTLS)
-	lldb so_long.out
+	gcc -g3 -o so_long $(SRCS) $(UTLS)
+	lldb so_long
 	
 re: fclean all
 
