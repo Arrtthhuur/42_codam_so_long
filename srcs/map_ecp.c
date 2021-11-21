@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/07 17:27:55 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/11/07 17:39:46 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/11/08 17:10:14 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ static int	ret_ecp(int exist_e, int exist_c, int exist_p)
 			printf("Error\n\tMissing C.\n");
 		if (exist_p == 0)
 			printf("Error\n\tMissing P.\n");
-		return (1);
+		return (EXIT_FAILURE);
 	}
-	printf("Success\n\tFound at least one E, C and P.\n");
-	return (0);
+	return (success_msg("\tFound at least one E, C and P.\n"));
 }
 
 /*

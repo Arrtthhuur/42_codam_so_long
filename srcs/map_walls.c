@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/07 14:18:52 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/11/07 17:40:16 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/11/08 17:14:11 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,7 @@ static int	ret_ul_walls(t_list *tmp, size_t line_len)
 	while (i < line_len)
 	{
 		if (tmp->content[i] != '1')
-		{
-			printf("Error\n\tInvalid map (see upper or lower wall).\n");
-			return (1);
-		}
+			return (error_msg("\tInvalid walls (see upper or lower wall).\n"));
 		i++;
 	}
 	return (0);
@@ -44,19 +41,15 @@ int	check_walls(t_list *list, size_t line_nb, size_t line_len)
 		if (tmp->line_nb == 0 || tmp->line_nb == line_nb - 1)
 		{
 			if (ret_ul_walls(tmp, line_len) != 0)
-				return (1);
+				return (EXIT_FAILURE);
 		}
 		else
 		{
 			if (tmp->content[0] != '1'
 				|| tmp->content[line_len - 1] != '1')
-			{
-				printf("Error\n\tInvalid map (see surrounding walls).\n");
-				return (1);
-			}
+				return (error_msg("\tInvalid walls (see surrounding walls).\n"));
 		}
 		tmp = tmp->next;
 	}
-	printf("Success\n\tWalls.\n");
-	return (0);
+	return (success_msg("\tFound surrounding walls.\n"));
 }

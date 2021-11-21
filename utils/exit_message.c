@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   get_next_line.h                                    :+:    :+:            */
+/*   exit_message.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/08 18:12:41 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/11/17 13:53:13 by abeznik       ########   odam.nl         */
+/*   Created: 2021/11/08 15:57:26 by abeznik       #+#    #+#                 */
+/*   Updated: 2021/11/08 16:21:55 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "../includes/so_long.h"
 
-# include <stddef.h> // size_t
+int	error_msg(char *msg)
+{
+	write(2, "Error\n", 7);
+	if (msg)
+		write(2, msg, ft_strlen(msg));
+	return (EXIT_FAILURE);
+}
 
-char	*get_next_line(int fd);
-
-char	*ft_strjoin(char const *s1, char const *s2);
-
-char	*ft_strchr(const char *s, int c);
-
-void	ft_bzero(void *s, size_t n);
-
-void	*ft_calloc(size_t count, size_t size);
-
-size_t	ft_strlen(const char *s);
-
-#endif
+int	success_msg(char *msg)
+{
+	write(2, "Success\n", 9);
+	if (msg)
+		write(2, msg, ft_strlen(msg));
+	return (EXIT_SUCCESS);
+}

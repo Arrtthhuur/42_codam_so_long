@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/11/07 17:47:12 by abeznik       ########   odam.nl          #
+#    Updated: 2021/11/21 15:14:44 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,10 +19,13 @@ SOURCES	=	main.c \
 			map_len.c \
 			map_walls.c \
 			map_ecp.c \
+			map_characters.c \
+			build_map.c
 
 SRC_DIR	=	srcs
 
-UTILS	=	get_next_line.c \
+UTILS	=	exit_message.c \
+			get_next_line.c \
 			get_next_line_utils.c \
 			ft_lstnew.c \
 			ft_lstadd_front.c \
@@ -88,8 +91,8 @@ del: fclean
 	rm -rf *.dSYM
 
 debug:
-	gcc -g3 -o so_long $(SRCS) $(UTLS)
-	lldb so_long
+	gcc -g3 -o db.out $(SRCS) $(UTLS) $(MLX_NAME)
+	lldb db.out
 	
 re: fclean all
 

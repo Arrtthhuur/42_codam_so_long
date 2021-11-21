@@ -17,7 +17,7 @@
 /*
 ** Function to print the linked list.
 */
-static void	print_list(t_list *list)
+void	print_list(t_list *list)
 {
 	while (list->next != NULL)
 	{
@@ -32,41 +32,42 @@ static void	print_list(t_list *list)
 */
 static int	perform_checks(t_list *head, size_t line_nb, size_t line_len)
 {
-	if (check_len(head, line_nb, line_len) != 0)
-		return (1);
-	if (check_walls(head, line_nb, line_len) != 0)
-		return (1);
-	if (check_ecp(head, line_nb) != 0)
-		return (1);
+	if (check_char(head, line_nb, line_len) != 0)
+		return (EXIT_FAILURE);
+	if (check_len(head, line_nb, line_len))
+		return (EXIT_FAILURE);
+	if (check_walls(head, line_nb, line_len))
+		return (EXIT_FAILURE);
+	if (check_ecp(head, line_nb))
+		return (EXIT_FAILURE);
 	printf("The map contains %zu lines of %zu length.\n", line_nb, line_len);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
 /*
 ** Function to read input file, create a linked list based on the 
 ** input and perform checks.
 */
-int	map_read(int fd)
+int	map_read(t_img *img)
 {
 	size_t	line_nb;
 	size_t	line_len;
-	t_list	*list;
-	t_list	*head;
 	char	*line;
 
-	head = NULL;
-	list = NULL;
+	img->list = NULL;
 	line_nb = 0;
 	line_len = 0;
-	line = get_next_line(fd);
+	line = get_next_line(img->fd);
 	line_len = ft_strlen(line) - 1;
-	head = ft_lstadd_front(head, line, line_nb);
+	img->list = ft_lstadd_front(img->list, line, line_nb);
 	while (line)
 	{
 		line_nb++;
-		line = get_next_line(fd);
-		head = ft_lstadd_back(head, line, line_nb);
+		line = get_next_line(img->fd);
+		img->list = ft_lstadd_back(img->list, line, line_nb);
 	}
-	print_list(head);
-	return (perform_checks(head, line_nb, line_len));
+	print_list(img->list);
+	img->nb_lines = line_nb - 1;
+	img->len_line = line_len;
+	return (perform_checks(img->list, line_nb, line_len));
 }

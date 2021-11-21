@@ -5,109 +5,145 @@
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/09/16 12:26:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/11/07 17:39:09 by abeznik       ########   odam.nl         */
+/*   Created: 2021/11/08 18:17:34 by abeznik       #+#    #+#                 */
+/*   Updated: 2021/11/21 14:03:56 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/get_next_line.h"
 
-#include <unistd.h> //read
-#include <stdlib.h> //free
+#include <unistd.h> // read
+#include <stdlib.h> // free
 
-static void	gnl_free(char *ptr)
+#define MAX_FD 1024
+#define BUFFER_SIZE 1
+
+/*
+** Join line and buff to tmp and free line.
+*/
+static char	*join_free(char *buff, char *tmp)
 {
-	if (ptr)
-	{
-		free(ptr);
-		ptr = NULL;
-	}
+	char	*line;
+
+	line = ft_strjoin(buff, tmp);
+	free(buff);
+	if (!line)
+		return (NULL);
+	return (line);
 }
 
-static int	gnl_line_len(char **save)
+/*
+** Find next line and remove it from buffer.
+*/
+static char	*next_line(char *buff)
 {
-	int	len;
+	size_t	len;
+	size_t	i;
+	char	*next_line;
 
 	len = 0;
-	while ((*save)[len] != '\n' && (*save)[len] != '\0')
+	while (buff[len] && buff[len] != '\n')
 		len++;
-	return (len);
-}
-
-static char	*gnl_new_line(char **line, char **save)
-{
-	char	*tmp_save;
-	int		len;
-
-	len = gnl_line_len(save);
-	tmp_save = *save;
-	if (ft_strchr(*save, '\n'))
+	if (!buff[len])
 	{
-		*line = ft_substr(*save, 0, len);
-		*save = ft_strdup(*save + len + 1);
-		if (!*save)
-			return (NULL);
-	}
-	else
-	{
-		*line = ft_strdup(tmp_save);
-		*save = NULL;
-	}
-	if (!*line)
-	{
-		gnl_free(*line);
+		free(buff);
 		return (NULL);
 	}
-	gnl_free(tmp_save);
-	return (*line);
+	next_line = ft_calloc((ft_strlen(buff) - len + 1), sizeof(char));
+	if (!next_line)
+	{
+		free(buff);
+		return (NULL);
+	}
+	len++;
+	i = 0;
+	while (buff[len])
+		next_line[i++] = buff[len++];
+	free(buff);
+	return (next_line);
 }
 
-static int	gnl_read_file(int fd, char **buffer, char **save, char **line)
+/*
+** Allocate mem for line and copy buff to line.
+** Edit: ft_calloc(len + 1) to remove '\n' and ret_line[len++] = '\0'
+*/
+static char	*get_line(char *buff)
+{
+	size_t	len;
+	char	*ret_line;
+
+	len = 0;
+	if (!buff[len])
+		return (NULL);
+	while (buff[len] && buff[len] != '\n')
+		len++;
+	ret_line = ft_calloc(len + 1, sizeof(char));
+	if (!ret_line)
+		return (NULL);
+	len = 0;
+	while (buff[len] && buff[len] != '\n')
+	{
+		ret_line[len] = buff[len];
+		len++;
+	}
+	return (ret_line);
+}
+
+/*
+** Read file and break if buffer has NL.
+*/
+static char	*read_file(int fd, char *buff, char *tmp)
 {
 	int		nbytes;
-	char	*tmp;
 
 	nbytes = 1;
-	while (!ft_strchr(*save, '\n') && nbytes != 0)
+	while (nbytes > 0)
 	{
-		nbytes = read(fd, *buffer, BUFFER_SIZE);
-		(*buffer)[nbytes] = '\0';
-		tmp = *save;
-		*save = ft_strjoin(*save, *buffer);
-		if (!*save)
-			return (0);
-		gnl_free(tmp);
+		nbytes = read(fd, tmp, BUFFER_SIZE);
+		if (nbytes == -1)
+		{
+			free(tmp);
+			free(buff);
+			return (NULL);
+		}
+		tmp[nbytes] = '\0';
+		buff = join_free(buff, tmp);
+		if (!buff)
+		{
+			free(tmp);
+			return (NULL);
+		}
+		if (ft_strchr(tmp, '\n'))
+			break ;
 	}
-	gnl_free(*buffer);
-	gnl_new_line(line, save);
-	return (nbytes);
+	free(tmp);
+	return (buff);
 }
 
+/*
+** Error handling, read, get line and next line.
+*/
 char	*get_next_line(int fd)
 {
-	char		*line;
-	static char	*save;
-	char		*buffer;
+	static char	*buff;
+	char		*ret_line;
+	char		*tmp;
 
-	if (fd < 0 || fd >= MAX_FD || BUFFER_SIZE <= 0)
+	if (fd < 0 || fd > MAX_FD || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
-	buffer = (char *) malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
-		return (NULL);
-	if (read(fd, buffer, 0) < 0)
+	if (!buff)
 	{
-		free(buffer);
-		return (NULL);
+		buff = ft_calloc(1, 1);
+		if (!buff)
+			return (NULL);
 	}
-	if (!save)
-		save = ft_strdup("");
-	if (!save)
+	tmp = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
+	if (!tmp)
 		return (NULL);
-	if (gnl_read_file(fd, &buffer, &save, &line) == 0 && *line == '\0')
-	{
-		if (line)
-			gnl_free(line);
+	buff = read_file(fd, buff, tmp);
+	if (!buff)
 		return (NULL);
-	}
-	return (line);
+	ret_line = get_line(buff);
+	buff = next_line(buff);
+	return (ret_line);
 }

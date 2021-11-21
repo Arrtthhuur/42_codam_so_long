@@ -25,5 +25,6 @@ typedef struct s_list
 t_list	*ft_lstnew(void *content, size_t line_nb, t_list *next);
 t_list	*ft_lstadd_front(t_list *head, char *content, size_t line_nb);
 t_list	*ft_lstadd_back(t_list *head, char *content, size_t line_nb);
+void	print_list(t_list *list);
 
 #endif
