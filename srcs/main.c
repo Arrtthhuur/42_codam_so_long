@@ -51,19 +51,23 @@ static void	mlx_main(t_img *img)
 	img->mlx = mlx_init();
 	img->win = mlx_new_window(img->mlx, 1920, 1080, "./so_long");
 	img->img = mlx_new_image(img->mlx, 1920, 1080);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length,\
-		&img->endian);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
+		&img->line_length, &img->endian);
 	y = 0;
+	printf("img len %d size %d\n",img->line_length, img->endian);
 	while (img->list->next != NULL)
 	{
-		if (img->list->line_nb == 0 || img->list->line_nb == img->nb_lines) 
+		if (img->list->line_nb == 0 || img->list->line_nb == img->nb_lines)
 		{
 			i = 0;
 			x = 0;
 			while (i < img->len_line)
 			{
-				build_wall(img, x, y);
-				x += 40;
+				if (img->list->content[i] == '1')
+					build_wall(img, x, y);
+				else
+					build_error(img, x, y);
+				x += 122;
 				i++;
 			}
 		}
@@ -75,19 +79,21 @@ static void	mlx_main(t_img *img)
 			{
 				if (img->list->content[i] == '1')
 					build_wall(img, x, y);
-				if (img->list->content[i] == '0')
+				else if (img->list->content[i] == '0')
 					build_floor(img, x, y);
-				if (img->list->content[i] == 'P')
+				else if (img->list->content[i] == 'P')
 					build_pacman(img, x, y);
-				if (img->list->content[i] == 'C')
+				else if (img->list->content[i] == 'C')
 					build_consumable(img, x, y);
-				if (img->list->content[i] == 'E')
+				else if (img->list->content[i] == 'E')
 					build_exit(img, x, y);
-				x += 40;
+				else
+					build_error(img, x, y);
+				x += 122;
 				i++;
 			}
 		}
-		y += 40;
+		y += 122;
 		img->list = img->list->next;
 	}
 	mlx_loop(img->mlx);
@@ -97,8 +103,8 @@ int	main(void)
 {
 	t_img	img;
 
-	// img.fd = open("simple_valid.ber", O_RDONLY);
-	img.fd = open("min_valid.ber", O_RDONLY);
+	img.fd = open("simple_valid.ber", O_RDONLY);
+	// img.fd = open("min_valid.ber", O_RDONLY);
 	// img.fd = open("invalid.ber", O_RDONLY);
 	map_read(&img);
 	close(img.fd);

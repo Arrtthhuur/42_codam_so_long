@@ -55,6 +55,7 @@ void		build_wall(t_img *img, int x, int y);
 void		build_pacman(t_img *img, int x, int y);
 void		build_consumable(t_img *img, int x, int y);
 void		build_exit(t_img *img, int x, int y);
+void		build_error(t_img *img, int x, int y);
 
 /*
 ** Exit succes or error message.
