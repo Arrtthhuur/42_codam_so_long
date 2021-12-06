@@ -58,7 +58,7 @@ int	map_read(t_img *img)
 	line_nb = 0;
 	line_len = 0;
 	line = get_next_line(img->fd);
-	line_len = ft_strlen(line) - 1;
+	line_len = ft_strlen(line);
 	img->list = ft_lstadd_front(img->list, line, line_nb);
 	while (line)
 	{

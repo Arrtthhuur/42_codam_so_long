@@ -30,6 +30,9 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 	int		fd;
+	int		beginX;
+	int		beginY;
+	char	map[10][10];
 	size_t	nb_lines;
 	size_t	len_line;
 	t_list	*list;
@@ -62,5 +65,11 @@ void		build_error(t_img *img, int x, int y);
 */
 int			error_msg(char *msg);
 int			success_msg(char *msg);
+
+/*
+** Key press related functions.
+*/
+// int			ft_close(int keycode, t_vars *vars);
+int			key_hook(int keycode, t_img *img);
 
 #endif

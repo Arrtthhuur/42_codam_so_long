@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/11/21 15:14:44 by abeznik       ########   odam.nl          #
+#    Updated: 2021/11/23 12:35:52 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SOURCES	=	main.c \
 			map_walls.c \
 			map_ecp.c \
 			map_characters.c \
-			build_map.c
+			build_map.c \
+			key_press.c
 
 SRC_DIR	=	srcs
 
@@ -45,7 +46,7 @@ OBJ_U 	=	$(patsubst %, $(OBJ_DIR)/utils/%, $(UTILS:.c=.o))
 
 CC		=	gcc
 RM		=	rm -f
-CFLAGS	=	-Wall -Werror -Wextra
+# CFLAGS	=	-Wall -Werror -Wextra
 
 all:		$(NAME)
 
