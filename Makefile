@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/11/23 12:35:52 by abeznik       ########   odam.nl          #
+#    Updated: 2021/12/06 20:27:34 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,9 +28,6 @@ SRC_DIR	=	srcs
 UTILS	=	exit_message.c \
 			get_next_line.c \
 			get_next_line_utils.c \
-			ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstadd_back.c \
 
 UTL_DIR	=	utils
 

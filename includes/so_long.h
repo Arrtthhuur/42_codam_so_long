@@ -15,7 +15,6 @@
 
 # include "../mlx/mlx.h"
 # include "get_next_line.h"
-# include "lists.h"
 
 # include <stdlib.h> //EXIT_
 # include <unistd.h> //write
@@ -32,10 +31,9 @@ typedef struct s_img
 	int		fd;
 	int		beginX;
 	int		beginY;
-	char	map[10][10];
+	char	**map;
 	size_t	nb_lines;
 	size_t	len_line;
-	t_list	*list;
 }	t_img;
 
 // int	main(int argc, char *argv[]);
@@ -45,10 +43,10 @@ int			main(void);
 ** Map read and check related functions.
 */
 int			map_read(t_img *img);
-int			check_ecp(t_list *list, size_t line_nb);
-int			check_len(t_list *list, size_t line_nb, size_t line_len);
-int			check_walls(t_list *list, size_t line_nb, size_t line_len);
-int			check_char(t_list *list, size_t line_nb, size_t line_len);
+int			check_ecp(char **map, size_t nb_lines);
+int			check_len(char **map, size_t nb_lines, size_t len_line);
+int			check_walls(char **map, size_t nb_lines, size_t len_line);
+int			check_char(char **map, size_t nb_lines, size_t len_line);
 
 /*
 ** Map building related functions.

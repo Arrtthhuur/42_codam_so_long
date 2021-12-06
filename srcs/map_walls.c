@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/07 14:18:52 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/11/08 17:14:11 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/06 20:16:39 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,35 @@
 
 #include <stdio.h> //printf
 
-static int	ret_ul_walls(t_list *tmp, size_t line_len)
-{
-	size_t	i;
-
-	i = 0;
-	while (i < line_len)
-	{
-		if (tmp->content[i] != '1')
-			return (error_msg("\tInvalid walls (see upper or lower wall).\n"));
-		i++;
-	}
-	return (0);
-}
-
 /*
 ** Function to check if the map is closed by walls.
 */
-int	check_walls(t_list *list, size_t line_nb, size_t line_len)
+int	check_walls(char **map, size_t nb_lines, size_t len_line)
 {
-	t_list	*tmp;
+	char	**tmp;
+	size_t	x;
+	size_t	y;
 
-	tmp = list;
-	while (tmp->content != NULL)
+	y = 0;
+	tmp = map;
+	while (y < nb_lines)
 	{
-		if (tmp->line_nb == 0 || tmp->line_nb == line_nb - 1)
+		if (y == 0 || y == nb_lines - 1)
 		{
-			if (ret_ul_walls(tmp, line_len) != 0)
-				return (EXIT_FAILURE);
+			x = 0;
+			while (x < len_line)
+			{
+				if (tmp[y][x] != '1')
+					return (error_msg("\tInvalid walls (see upper or lower wall).\n"));
+				x++;
+			}
 		}
 		else
 		{
-			if (tmp->content[0] != '1'
-				|| tmp->content[line_len - 1] != '1')
-				return (error_msg("\tInvalid walls (see surrounding walls).\n"));
+			if (tmp[y][0] != '1' || tmp[y][len_line - 1] != '1')
+				return (error_msg("\tInvalid walls (see middle wall).\n"));
 		}
-		tmp = tmp->next;
+		y++;
 	}
 	return (success_msg("\tFound surrounding walls.\n"));
 }

@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/07 17:27:55 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/11/08 17:10:14 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/06 20:18:13 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,29 +32,31 @@ static int	ret_ecp(int exist_e, int exist_c, int exist_p)
 /*
 ** Function to check if there is at least one E, C and P.
 */
-int	check_ecp(t_list *list, size_t line_nb)
+int	check_ecp(char **map, size_t nb_lines)
 {
-	t_list	*tmp;
+	char	**tmp;
 	int		exist_e;
 	int		exist_c;
 	int		exist_p;
+	size_t	y;
 
 	exist_e = 0;
 	exist_c = 0;
 	exist_p = 0;
-	tmp = list;
-	while (tmp->content != NULL)
+	y = 0;
+	tmp = map;
+	while (y < nb_lines)
 	{
-		if (tmp->line_nb > 0 && tmp->line_nb < line_nb - 1)
+		if (y > 0 && y < nb_lines - 1)
 		{
-			if (ft_strchr(tmp->content, 'E'))
+			if (ft_strchr(map[y], 'E'))
 				exist_e += 1;
-			if (ft_strchr(tmp->content, 'C'))
+			if (ft_strchr(map[y], 'C'))
 				exist_c += 1;
-			if (ft_strchr(tmp->content, 'P'))
+			if (ft_strchr(map[y], 'P'))
 				exist_p += 1;
 		}
-		tmp = tmp->next;
+		y++;
 	}
 	return (ret_ecp(exist_e, exist_c, exist_p));
 }
