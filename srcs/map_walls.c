@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/07 14:18:52 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/06 20:16:39 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/06 20:33:55 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	check_walls(char **map, size_t nb_lines, size_t len_line)
 			while (x < len_line)
 			{
 				if (tmp[y][x] != '1')
-					return (error_msg("\tInvalid walls (see upper or lower wall).\n"));
+					return (error_msg("\tInvalid walls \
+						(see upper or lower wall).\n"));
 				x++;
 			}
 		}

@@ -34,19 +34,11 @@
 // 	return (0);
 // }
 
-static void	mlx_main(t_img *img)
+static void	map_build(t_img *img)
 {
-	int		x;
-	int		y;
-	size_t	i;
+	size_t	y;
+	size_t	x;
 
-	img->mlx = mlx_init();
-	img->win = mlx_new_window(img->mlx, img->len_line * 32, \
-		img->nb_lines * 32, "./so_long");
-	img->img = mlx_new_image(img->mlx, img->len_line * 32, \
-		img->nb_lines * 32);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
-		&img->line_length, &img->endian);
 	y = 0;
 	while (y < img->nb_lines)
 	{
@@ -66,7 +58,6 @@ static void	mlx_main(t_img *img)
 				img->beginX = x;
 				img->beginY = y;
 				build_pacman(img, x, y);
-
 			}
 			else
 				build_error(img, x, y);
@@ -76,6 +67,22 @@ static void	mlx_main(t_img *img)
 	}
 }
 
+static void	mlx_main(t_img *img)
+{
+	int		x;
+	int		y;
+	size_t	i;
+
+	img->mlx = mlx_init();
+	img->win = mlx_new_window(img->mlx, img->len_line * 32, \
+		img->nb_lines * 32, "./so_long");
+	img->img = mlx_new_image(img->mlx, img->len_line * 32, \
+		img->nb_lines * 32);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, \
+		&img->line_length, &img->endian);
+	map_build(img);
+}
+
 int	main(void)
 {
 	t_img	img;
@@ -83,7 +90,7 @@ int	main(void)
 	img.fd = open("map.ber", O_RDONLY);
 	map_read(&img);
 	mlx_main(&img);
-	mlx_hook(img.win, 2, 1L<<0, key_hook, &img);
+	mlx_hook(img.win, 2, 1L << 0, key_hook, &img);
 	mlx_loop(img.mlx);
 	close(img.fd);
 	return (EXIT_SUCCESS);

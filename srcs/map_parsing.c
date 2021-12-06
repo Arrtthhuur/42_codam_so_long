@@ -39,20 +39,17 @@ static int	perform_checks(char **map, size_t nb_lines, size_t len_line)
 int	map_read(t_img *img)
 {
 	char	**map;
-	char	*line;
 	size_t	line_len;
 	size_t	i;
 
 	line_len = 0;
 	i = 0;
-	line = get_next_line(img->fd);
-	map[i] = line;
-	line_len = ft_strlen(line);
-	while (line)
+	map[i] = get_next_line(img->fd);
+	line_len = ft_strlen(map[i]);
+	while (map[i])
 	{
 		i++;
-		line = get_next_line(img->fd);
-		map[i] = line;
+		map[i] = get_next_line(img->fd);
 	}
 	img->map = map;
 	img->nb_lines = i;
