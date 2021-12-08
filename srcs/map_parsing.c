@@ -18,7 +18,7 @@
 ** Function to perform checks: length of lines, presence of walls
 ** and existing at least one E, one C and one P.
 */
-static int	perform_checks(char **map, size_t nb_lines, size_t len_line)
+static int	perform_checks(char **map, int nb_lines, int len_line)
 {
 	if (check_char(map, nb_lines, len_line))
 		return (EXIT_FAILURE);
@@ -28,7 +28,7 @@ static int	perform_checks(char **map, size_t nb_lines, size_t len_line)
 		return (EXIT_FAILURE);
 	if (check_ecp(map, nb_lines))
 		return (EXIT_FAILURE);
-	printf("The map contains %zu lines of %zu length.\n", nb_lines, len_line);
+	printf("The map contains %d lines of %d length.\n", nb_lines, len_line);
 	return (EXIT_SUCCESS);
 }
 
@@ -39,8 +39,8 @@ static int	perform_checks(char **map, size_t nb_lines, size_t len_line)
 int	map_read(t_img *img)
 {
 	char	**map;
-	size_t	line_len;
-	size_t	i;
+	int		line_len;
+	int		i;
 
 	line_len = 0;
 	i = 0;

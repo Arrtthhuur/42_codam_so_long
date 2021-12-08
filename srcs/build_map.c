@@ -5,72 +5,57 @@
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/11/19 16:13:31 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/06 20:48:09 by abeznik       ########   odam.nl         */
+/*   Created: 2021/12/08 15:23:49 by abeznik       #+#    #+#                 */
+/*   Updated: 2021/12/08 17:12:57 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-/*
-** PNG related functions.
-*/
-void	build_floor(t_img *img, int x, int y)
+static void	build_ghost(t_img *img, int x, int y)
 {
-	int		img_width;
-	int		img_height;
-
-	img->img = mlx_png_file_to_image(img->mlx, "./images/png/pill.png", \
-		&img_width, &img_height);
-	mlx_put_image_to_window(img->mlx, img->win, img->img, x * 32, y * 32);
+	img->ghostX = x;
+	img->ghostY = y;
+	build_image("./images/xpm/ghost.xpm", img, x, y);
 }
 
-void	build_wall(t_img *img, int x, int y)
+static void	build_hiddenExit(t_img *img, int x, int y)
 {
-	int		img_width;
-	int		img_height;
-
-	img->img = mlx_png_file_to_image(img->mlx, "./images/png/wall.png", \
-		&img_width, &img_height);
-	mlx_put_image_to_window(img->mlx, img->win, img->img, x * 32, y * 32);
+	img->exitX = x;
+	img->exitY = y;
+	build_image("./images/xpm/pill.xpm", img, x, y);
 }
 
-void	build_pacman(t_img *img, int x, int y)
+static void	build_initialPacman(t_img *img, int x, int y)
 {
-	int		img_width;
-	int		img_height;
-
-	img->img = mlx_png_file_to_image(img->mlx, "./images/png/pacman.png", \
-		&img_width, &img_height);
-	mlx_put_image_to_window(img->mlx, img->win, img->img, x * 32, y * 32);
+	img->beginX = x;
+	img->beginY = y;
+	build_image("./images/xpm/pacman.xpm", img, x, y);
 }
 
-void	build_consumable(t_img *img, int x, int y)
+void	build_map(t_img *img, int y, int x)
 {
-	int		img_width;
-	int		img_height;
-
-	img->img = mlx_png_file_to_image(img->mlx, "./images/png/pellet.png", \
-		&img_width, &img_height);
-	mlx_put_image_to_window(img->mlx, img->win, img->img, x * 32, y * 32);
-}
-
-void	build_exit(t_img *img, int x, int y)
-{
-	int		img_width;
-	int		img_height;
-
-	img->img = mlx_png_file_to_image(img->mlx, "./images/png/cherry.png", \
-		&img_width, &img_height);
-	mlx_put_image_to_window(img->mlx, img->win, img->img, x * 32, y * 32);
-}
-
-void	build_error(t_img *img, int x, int y)
-{
-	int		img_width;
-	int		img_height;
-
-	img->img = mlx_png_file_to_image(img->mlx, "./images/png/error.png", \
-		&img_width, &img_height);
-	mlx_put_image_to_window(img->mlx, img->win, img->img, x * 32, y * 32);
+	while (y < img->nb_lines)
+	{
+		x = 0;
+		while (x < img->len_line)
+		{
+			if (img->map[y][x] == '1')
+				build_image("./images/xpm/wall.xpm", img, x, y);
+			else if (img->map[y][x] == '0')
+				build_image("./images/xpm/pill.xpm", img, x, y);
+			else if (img->map[y][x] == 'C')
+				build_consumable(img, x, y);
+			else if (img->map[y][x] == 'G')
+				build_ghost(img, x, y);
+			else if (img->map[y][x] == 'E')
+				build_hiddenExit(img, x, y);
+			else if (img->map[y][x] == 'P')
+				build_initialPacman(img, x, y);
+			else
+				build_image("./images/xpm/error.xpm", img, x, y);
+			x++;
+		}
+		y++;
+	}
 }

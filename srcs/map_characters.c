@@ -6,21 +6,20 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/08 16:34:50 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/06 20:08:05 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/08 17:01:14 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
 /*
-** Function to check if there is only 1, 0, E, C or P in the map.
+** Function to check if there is only 1, 0, E, C or P (or G) in the map.
 */
-int	check_char(char **map, size_t nb_lines, size_t len_line)
+int	check_char(char **map, int nb_lines, int len_line)
 {
 	char	**tmp;
-	size_t	count;
-	size_t	x;
-	size_t	y;
+	int		x;
+	int		y;
 
 	y = 0;
 	tmp = map;
@@ -31,7 +30,7 @@ int	check_char(char **map, size_t nb_lines, size_t len_line)
 		{
 			if (tmp[y][x] == '1' || tmp[y][x] == '0'
 				|| tmp[y][x] == 'C' || tmp[y][x] == 'P'
-				|| tmp[y][x] == 'E')
+				|| tmp[y][x] == 'E' || tmp[y][x] == 'G')
 				x++;
 			else
 				return (error_msg("\tInvalid character.\n"));

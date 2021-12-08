@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/12/06 20:27:34 by abeznik       ########   odam.nl          #
+#    Updated: 2021/12/08 17:15:26 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,13 +21,18 @@ SOURCES	=	main.c \
 			map_ecp.c \
 			map_characters.c \
 			build_map.c \
-			key_press.c
+			build_images.c \
+			key_mouse_hook.c \
+			movements.c \
+			movements_utils.c \
+			ghost_mov.c \
 
 SRC_DIR	=	srcs
 
 UTILS	=	exit_message.c \
 			get_next_line.c \
 			get_next_line_utils.c \
+			ft_utoa.c \
 
 UTL_DIR	=	utils
 
@@ -90,7 +95,7 @@ del: fclean
 
 debug:
 	gcc -g3 -o db.out $(SRCS) $(UTLS) $(MLX_NAME)
-	lldb db.out
+	lldb db.out -- map.ber
 	
 re: fclean all
 

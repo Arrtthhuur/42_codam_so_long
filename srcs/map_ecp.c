@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/07 17:27:55 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/06 20:18:13 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/08 17:01:21 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ static int	ret_ecp(int exist_e, int exist_c, int exist_p)
 /*
 ** Function to check if there is at least one E, C and P.
 */
-int	check_ecp(char **map, size_t nb_lines)
+int	check_ecp(char **map, int nb_lines)
 {
 	char	**tmp;
 	int		exist_e;
 	int		exist_c;
 	int		exist_p;
-	size_t	y;
+	int		y;
 
 	exist_e = 0;
 	exist_c = 0;
