@@ -38,8 +38,3 @@ int	key_hook(int keycode, t_img *img)
 		move_down(img);
 	return (EXIT_SUCCESS);
 }
-
-int	ft_close(void)
-{
-	exit(EXIT_SUCCESS);
-}

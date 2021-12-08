@@ -17,6 +17,11 @@
 #include <stdlib.h> // free
 #include <fcntl.h> // open
 
+static int	ft_close(void)
+{
+	exit(EXIT_SUCCESS);
+}
+
 static void	mlx_main(t_img *img)
 {
 	int	sizey;
@@ -33,7 +38,7 @@ static void	mlx_main(t_img *img)
 	if (img->len_line * IMG_SIZE > sizex || img->nb_lines * IMG_SIZE > sizey)
 	{
 		error_msg("\tMap too big for screen.\n");
-		exit(1);
+		exit(EXIT_FAILURE);
 	}
 	img->consumables = 0;
 	img->openExit = 0;

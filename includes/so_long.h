@@ -95,7 +95,6 @@ int			success_msg(char *msg);
 /*
 ** Key/mouse press related functions.
 */
-int			ft_close(void);
 int			key_hook(int keycode, t_img *img);
 
 /*
