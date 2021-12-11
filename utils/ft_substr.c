@@ -1,51 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_utoa.c                                          :+:    :+:            */
+/*   ft_substr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/12/08 16:34:07 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/11 13:33:42 by abeznik       ########   odam.nl         */
+/*   Created: 2020/11/01 11:03:44 by abeznik       #+#    #+#                 */
+/*   Updated: 2021/12/11 14:58:37 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static size_t	ft_uintlen(unsigned int ui)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	size_t			len;
-	unsigned int	num;
+	char	*buff;
+	size_t	i;
 
-	len = 0;
-	num = ui;
-	while (num > 0)
-	{
-		num /= 10;
-		len++;
-	}
-	return (len);
-}
-
-char	*ft_utoa(unsigned int ui)
-{
-	char			*ptr;
-	size_t			len;
-	unsigned int	num;
-
-	len = ft_uintlen(ui);
-	ptr = (char *)malloc((len + 1) * sizeof(char));
-	if (!ptr)
+	i = 0;
+	if (s == NULL)
 		return (NULL);
-	ptr[len] = '\0';
-	num = ui;
-	if (ui == 0)
-		ptr[0] = '0';
-	while (num > 0)
+	if (start >= (unsigned int)ft_strlen(s))
 	{
-		len--;
-		ptr[len] = num % 10 + '0';
-		num /= 10;
+		buff = (char *)malloc(1);
+		buff[0] = '\0';
+		return (buff);
 	}
-	return (ptr);
+	buff = (char *)malloc(sizeof(char) * (len + 1));
+	if (buff == NULL)
+		return (NULL);
+	while ((len > i) && (s[start] != '\0'))
+	{
+		buff[i] = s[start];
+		i++;
+		start++;
+	}
+	buff[i] = '\0';
+	return (buff);
 }

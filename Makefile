@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/12/08 17:35:31 by abeznik       ########   odam.nl          #
+#    Updated: 2021/12/11 15:04:08 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,9 +23,9 @@ SOURCES	=	main.c \
 			build_map.c \
 			build_images.c \
 			key_mouse_hook.c \
-			movements.c \
-			movements_utils.c \
+			player_mov.c \
 			ghost_mov.c \
+			movements_utils.c \
 
 SRC_DIR	=	srcs
 
@@ -33,6 +33,8 @@ UTILS	=	exit_message.c \
 			get_next_line.c \
 			get_next_line_utils.c \
 			ft_utoa.c \
+			ft_split.c \
+			ft_substr.c \
 
 UTL_DIR	=	utils
 
@@ -48,7 +50,7 @@ OBJ_U 	=	$(patsubst %, $(OBJ_DIR)/utils/%, $(UTILS:.c=.o))
 
 CC		=	gcc
 RM		=	rm -f
-# CFLAGS	=	-Wall -Werror -Wextra
+CFLAGS	=	-Wall -Werror -Wextra
 
 all:		$(NAME)
 
@@ -67,18 +69,8 @@ $(OBJ_DIR)/utils/%.o: $(UTL_DIR)/%.c
 	@mkdir -p obj/utils
 	$(CC) -c $(CFLAGS) -I $(HEADER) -o $@ $<
 
-test:	$(OBJ_S) $(OBJ_U)
-	$(CC) -o $(NAME) $(OBJ_S) $(OBJ_U)
-	./so_long
-
-simple_valid:
-	./so_long simple_valid.ber
-	
-min_valid:
-	./so_long min_valid.ber
-
-simple_invalid:
-	./so_long invalid.ber
+norminette:
+	norminette srcs/ utils/
 
 clean:
 	$(RM) $(OBJ_S) $(OBJ_U)

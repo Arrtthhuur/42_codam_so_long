@@ -33,6 +33,27 @@ static int	perform_checks(char **map, int nb_lines, int len_line)
 }
 
 /*
+** Function to compute number of lines, and thus allowing
+** us to know how much space to allocate.
+*/
+int	map_first_read(t_img *img)
+{
+	char	*line;
+	int		nb_lines;
+
+	nb_lines = 0;
+	line = get_next_line(img->fd1);
+	while (line)
+	{
+		free(line);
+		nb_lines++;
+		line = get_next_line(img->fd1);
+	}
+	free(line);
+	return (nb_lines);
+}
+
+/*
 ** Function to read input file, create a linked list based on the 
 ** input and perform checks.
 */
@@ -41,16 +62,22 @@ int	map_read(t_img *img)
 	char	**map;
 	int		line_len;
 	int		i;
+	int		y;
 
 	line_len = 0;
-	i = 0;
-	map[i] = get_next_line(img->fd);
-	line_len = ft_strlen(map[i]);
-	while (map[i])
+	y = 0;
+	i = map_first_read(img);
+	map = (char **)malloc(sizeof(map) * (i + 1));
+	if (!map)
+		return (1);
+	map[y] = get_next_line(img->fd2);
+	line_len = ft_strlen(map[y]);
+	while (map[y])
 	{
-		i++;
-		map[i] = get_next_line(img->fd);
+		y++;
+		map[y] = get_next_line(img->fd2);
 	}
+	map[y] = NULL;
 	img->map = map;
 	img->nb_lines = i;
 	img->len_line = line_len;

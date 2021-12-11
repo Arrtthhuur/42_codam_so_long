@@ -6,12 +6,15 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 15:23:49 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/08 17:12:57 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/09 16:24:03 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+/*
+** Building map, ghost, exit and initial player position.
+*/
 static void	build_ghost(t_img *img, int x, int y)
 {
 	img->ghostX = x;
@@ -30,7 +33,7 @@ static void	build_initialPacman(t_img *img, int x, int y)
 {
 	img->beginX = x;
 	img->beginY = y;
-	build_image("./images/xpm/pacman.xpm", img, x, y);
+	build_image("./images/xpm/pacman_right.xpm", img, x, y);
 }
 
 void	build_map(t_img *img, int y, int x)

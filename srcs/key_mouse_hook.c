@@ -10,17 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-**			  int
-** UP 		= 126
-** DOWN 	= 125
-** LEFT		= 123
-** RIGHT 	= 124
-** ESC		= 53
-*/
-
 #include "../includes/so_long.h"
 
+/*
+** Function related to key presses.
+*/
 int	key_hook(int keycode, t_img *img)
 {
 	if (keycode == 53)
@@ -28,13 +22,13 @@ int	key_hook(int keycode, t_img *img)
 		mlx_destroy_window(img->mlx, img->win);
 		exit(EXIT_SUCCESS);
 	}
-	if (keycode == 124)
-		move_right(img);
-	if (keycode == 123)
-		move_left(img);
-	if (keycode == 126)
-		move_up(img);
-	if (keycode == 125)
-		move_down(img);
+	if (keycode == 124 || keycode == 2)
+		move_right(img, img->beginX, img->beginY);
+	if (keycode == 123 || keycode == 0)
+		move_left(img, img->beginX, img->beginY);
+	if (keycode == 126 || keycode == 13)
+		move_up(img, img->beginX, img->beginY);
+	if (keycode == 125 || keycode == 1)
+		move_down(img, img->beginX, img->beginY);
 	return (EXIT_SUCCESS);
 }
