@@ -68,6 +68,7 @@ static void	mlx_main(t_img *img)
 int	main(int argc, char **argv)
 {
 	t_img	img;
+	int		ret;
 
 	if (argc < 2)
 		return (error_msg("\tNo map entered.\n"));
@@ -75,6 +76,8 @@ int	main(int argc, char **argv)
 		return (error_msg("\tToo many arguments entered.\n"));
 	check_ber(argv[1]);
 	img.fd1 = open(argv[1], O_RDONLY);
+	if (img.fd1 == -1)
+		return (error_msg("\tFailed to open the map.\n"));
 	img.fd2 = open(argv[1], O_RDONLY);
 	if (map_read(&img) != 0)
 		exit(EXIT_FAILURE);
@@ -82,7 +85,10 @@ int	main(int argc, char **argv)
 	mlx_hook(img.win, 2, 1L << 0, key_hook, &img);
 	mlx_hook(img.win, 17, 1L << 17, ft_close, &img);
 	mlx_loop(img.mlx);
-	close(img.fd1);
+	ret = 0;
+	ret = close(img.fd1);
+	if (ret == -1)
+		return (error_msg("\tFailed to close the map.\n"));
 	close(img.fd2);
 	return (EXIT_SUCCESS);
 }
