@@ -49,64 +49,67 @@ typedef struct s_img
 	int		sizex;
 }	t_img;
 
-int	main(int argc, char **argv);
+int		main(int argc, char **argv);
 
 /*
 ** Map read and check related functions.
 */
-int			map_read(t_img *img);
-int			check_ecp(char **map, int nb_lines);
-int			check_len(char **map, int nb_lines, int len_line);
-int			check_walls(char **map, int nb_lines, int len_line);
-int			check_char(char **map, int nb_lines, int len_line);
+int		map_read(t_img *img);
+int		check_ecp(char **map, int nb_lines);
+int		check_g(char **map, int nb_lines);
+int		check_len(char **map, int nb_lines, int len_line);
+int		check_walls(char **map, int nb_lines, int len_line);
+int		check_char(char **map, int nb_lines, int len_line);
 
 /*
 ** Map building related functions.
 */
-void		build_map(t_img *img, int y, int x);
-void		build_image(char *path, t_img *img, int x, int y);
-void		build_consumable(t_img *img, int x, int y);
-void		build_exit(t_img *img, int x, int y);
+void	build_map(t_img *img, int y, int x);
+void	build_image(char *path, t_img *img, int x, int y);
+void	build_consumable(t_img *img, int x, int y);
+void	build_exit(t_img *img, int x, int y);
 
 /*
 ** Player movement related functions.
 */
-void		move_right(t_img *img, int x, int y);
-void		move_left(t_img *img, int x, int y);
-void		move_up(t_img *img, int x, int y);
-void		move_down(t_img *img, int x, int y);
-int			check_ifWall(t_img *img, int x, int y);
-void		movement_count(t_img *img);
-void		consumable_count(t_img *img, int y, int x);
-void		check_ifExit(t_img *img, int x, int y);
-void		check_ifContact(int x, int y, int ghostX, int ghostY);
+void	move_right(t_img *img, int x, int y);
+void	move_left(t_img *img, int x, int y);
+void	move_up(t_img *img, int x, int y);
+void	move_down(t_img *img, int x, int y);
+int		check_ifWall(t_img *img, int x, int y);
+void	movement_count(t_img *img);
+void	consumable_count(t_img *img, int y, int x);
+void	check_ifExit(t_img *img, int x, int y);
+void	check_ifContact(int x, int y, int ghostX, int ghostY);
+
 /*
 ** Ghost movement related functions.
 */
-void		ghost_move_right(t_img *img, int x, int y);;
-void		ghost_move_left(t_img *img, int x, int y);;
-void		ghost_move_up(t_img *img, int x, int y);;
-void		ghost_move_down(t_img *img, int x, int y);;
+void	ghost_move_right(t_img *img, int x, int y);
+void	ghost_move_left(t_img *img, int x, int y);
+void	ghost_move_up(t_img *img, int x, int y);
+void	ghost_move_down(t_img *img, int x, int y);
+
 /*
 ** Exit succes or error message.
 */
-int			error_msg(char *msg);
-int			success_msg(char *msg);
+int		error_msg(char *msg);
+int		success_msg(char *msg);
 
 /*
 ** Key/mouse press related functions.
 */
-int			key_hook(int keycode, t_img *img);
+int		key_hook(int keycode, t_img *img);
 
 /*
 ** Misc.
 */
-char		*ft_utoa(unsigned int ui);
-char		**ft_split(char const *s, char c);
-int			ft_strncmp(const char *s1, const char *s2, size_t n);
-char		*ft_substr(char const *s, unsigned int start, size_t len);
-void		*ft_memchr(const void *s, int c, size_t n);
-char		*ft_strdup(const char *s1);
-void		*ft_memmove(void *dst, const void *src, size_t len);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_utoa(unsigned int ui);
+char	**ft_split(char const *s, char c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	*ft_memchr(const void *s, int c, size_t n);
+char	*ft_strdup(const char *s1);
+void	*ft_memmove(void *dst, const void *src, size_t len);
 
 #endif

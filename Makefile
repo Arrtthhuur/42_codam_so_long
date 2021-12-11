@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/12/11 15:04:08 by abeznik       ########   odam.nl          #
+#    Updated: 2021/12/11 16:51:13 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SOURCES	=	main.c \
 			map_len.c \
 			map_walls.c \
 			map_ecp.c \
+			map_g.c \
 			map_characters.c \
 			build_map.c \
 			build_images.c \
