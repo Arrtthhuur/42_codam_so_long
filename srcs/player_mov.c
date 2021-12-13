@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:33:38 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/11 13:11:44 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/13 11:52:54 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,10 @@ void	move_right(t_img *img, int x, int y)
 		img->beginX = img->beginX + 1;
 		build_image("./images/xpm/pill.xpm", img, x, y);
 		movement_count(img);
+		check_ifContact(x + 1, y, img->ghostX, img->ghostY);
 	}
 	ghost_move_left(img, img->ghostX, img->ghostY);
-	check_ifContact(x + 1, y, img->ghostX, img->ghostY);
+	check_ifContact(x, y, img->ghostX, img->ghostY);
 }
 
 void	move_left(t_img *img, int x, int y)
@@ -44,9 +45,10 @@ void	move_left(t_img *img, int x, int y)
 		img->beginX = img->beginX - 1;
 		build_image("./images/xpm/pill.xpm", img, x, y);
 		movement_count(img);
+		check_ifContact(x - 1, y, img->ghostX, img->ghostY);
 	}
 	ghost_move_right(img, img->ghostX, img->ghostY);
-	check_ifContact(x - 1, y, img->ghostX, img->ghostY);
+	check_ifContact(x, y, img->ghostX, img->ghostY);
 }
 
 void	move_up(t_img *img, int x, int y)
@@ -61,9 +63,10 @@ void	move_up(t_img *img, int x, int y)
 		img->beginY = img->beginY - 1;
 		build_image("./images/xpm/pill.xpm", img, x, y);
 		movement_count(img);
+		check_ifContact(x, y - 1, img->ghostX, img->ghostY);
 	}
 	ghost_move_down(img, img->ghostX, img->ghostY);
-	check_ifContact(x, y - 1, img->ghostX, img->ghostY);
+	check_ifContact(x, y, img->ghostX, img->ghostY);
 }
 
 void	move_down(t_img *img, int x, int y)
@@ -78,7 +81,8 @@ void	move_down(t_img *img, int x, int y)
 		img->beginY = img->beginY + 1;
 		build_image("./images/xpm/pill.xpm", img, x, y);
 		movement_count(img);
+		check_ifContact(x, y + 1, img->ghostX, img->ghostY);
 	}
 	ghost_move_up(img, img->ghostX, img->ghostY);
-	check_ifContact(x, y + 1, img->ghostX, img->ghostY);
+	check_ifContact(x, y, img->ghostX, img->ghostY);
 }
