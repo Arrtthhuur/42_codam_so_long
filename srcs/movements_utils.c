@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:33:38 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/15 14:36:21 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/15 15:13:21 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	check_if_contact(int x, int y, int ghost_x, int ghost_y)
 	{
 		printf("YOU LOST!\n\tYour score is -1\n");
 		printf("\tHigh Score is 999985641351\n");
-		system("leaks so_long");
 		exit(0);
 	}
 }

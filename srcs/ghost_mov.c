@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:33:38 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/15 13:43:50 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/15 15:10:17 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,13 @@ void	ghost_move_right(t_img *img, int x, int y)
 		else
 			build_image("./images/xpm/pill.xpm", img, x, y);
 		img->ghost_x = img->ghost_x + 1;
+		check_if_contact(x + 1, y, img->begin_x, img->begin_y);
 	}
 	else if (!check_if_wall(img, x - 1, y))
+	{
 		ghost_move_left(img, img->ghost_x, img->ghost_y);
+		check_if_contact(x - 1, y, img->begin_x, img->begin_y);
+	}
 }
 
 void	ghost_move_left(t_img *img, int x, int y)
@@ -44,9 +48,13 @@ void	ghost_move_left(t_img *img, int x, int y)
 		else
 			build_image("./images/xpm/pill.xpm", img, x, y);
 		img->ghost_x = img->ghost_x - 1;
+		check_if_contact(x - 1, y, img->begin_x, img->begin_y);
 	}
 	else if (!check_if_wall(img, x + 1, y))
+	{
 		ghost_move_right(img, img->ghost_x, img->ghost_y);
+		check_if_contact(x + 1, y, img->begin_x, img->begin_y);
+	}
 }
 
 void	ghost_move_up(t_img *img, int x, int y)
@@ -61,9 +69,13 @@ void	ghost_move_up(t_img *img, int x, int y)
 		else
 			build_image("./images/xpm/pill.xpm", img, x, y);
 		img->ghost_y = img->ghost_y - 1;
+		check_if_contact(x, y - 1, img->begin_x, img->begin_y);
 	}
 	else if (!check_if_wall(img, x, y + 1))
+	{
 		ghost_move_down(img, img->ghost_x, img->ghost_y);
+		check_if_contact(x, y + 1, img->begin_x, img->begin_y);
+	}
 }
 
 void	ghost_move_down(t_img *img, int x, int y)
@@ -78,7 +90,11 @@ void	ghost_move_down(t_img *img, int x, int y)
 		else
 			build_image("./images/xpm/pill.xpm", img, x, y);
 		img->ghost_y = img->ghost_y + 1;
+		check_if_contact(x, y + 1, img->begin_x, img->begin_y);
 	}
 	else if (!check_if_wall(img, x, y - 1))
+	{
 		ghost_move_up(img, img->ghost_x, img->ghost_y);
+		check_if_contact(x, y - 1, img->begin_x, img->begin_y);
+	}
 }

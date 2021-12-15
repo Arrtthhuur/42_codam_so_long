@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:33:38 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/15 13:43:50 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/15 15:12:54 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ void	move_right(t_img *img, int x, int y)
 		img->begin_x = img->begin_x + 1;
 		build_image("./images/xpm/pill.xpm", img, x, y);
 		movement_count(img);
-		check_if_contact(x + 1, y, img->ghost_x, img->ghost_y);
+		check_if_contact(x + 1, y, img->ghost_x - 1, img->ghost_y);
 	}
 	ghost_move_left(img, img->ghost_x, img->ghost_y);
-	check_if_contact(x, y, img->ghost_x, img->ghost_y);
 }
 
 void	move_left(t_img *img, int x, int y)
@@ -45,10 +44,9 @@ void	move_left(t_img *img, int x, int y)
 		img->begin_x = img->begin_x - 1;
 		build_image("./images/xpm/pill.xpm", img, x, y);
 		movement_count(img);
-		check_if_contact(x - 1, y, img->ghost_x, img->ghost_y);
+		check_if_contact(x - 1, y, img->ghost_x + 1, img->ghost_y);
 	}
 	ghost_move_right(img, img->ghost_x, img->ghost_y);
-	check_if_contact(x, y, img->ghost_x, img->ghost_y);
 }
 
 void	move_up(t_img *img, int x, int y)
@@ -63,10 +61,9 @@ void	move_up(t_img *img, int x, int y)
 		img->begin_y = img->begin_y - 1;
 		build_image("./images/xpm/pill.xpm", img, x, y);
 		movement_count(img);
-		check_if_contact(x, y - 1, img->ghost_x, img->ghost_y);
+		check_if_contact(x, y - 1, img->ghost_x, img->ghost_y + 1);
 	}
 	ghost_move_down(img, img->ghost_x, img->ghost_y);
-	check_if_contact(x, y, img->ghost_x, img->ghost_y);
 }
 
 void	move_down(t_img *img, int x, int y)
@@ -81,8 +78,7 @@ void	move_down(t_img *img, int x, int y)
 		img->begin_y = img->begin_y + 1;
 		build_image("./images/xpm/pill.xpm", img, x, y);
 		movement_count(img);
-		check_if_contact(x, y + 1, img->ghost_x, img->ghost_y);
+		check_if_contact(x, y + 1, img->ghost_x, img->ghost_y - 1);
 	}
 	ghost_move_up(img, img->ghost_x, img->ghost_y);
-	check_if_contact(x, y, img->ghost_x, img->ghost_y);
 }

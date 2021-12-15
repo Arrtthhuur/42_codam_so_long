@@ -18,7 +18,6 @@
 
 static int	ft_close(void)
 {
-	system("leaks so_long");
 	exit(EXIT_SUCCESS);
 }
 
