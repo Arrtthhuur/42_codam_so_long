@@ -5,8 +5,8 @@
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/10/21 21:22:17 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/10/21 21:22:17 by abeznik       ########   odam.nl         */
+/*   Created: 2021/12/11 17:00:38 by abeznik       #+#    #+#                 */
+/*   Updated: 2021/12/11 17:00:38 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 static int	ft_close(void)
 {
+	system("leaks so_long");
 	exit(EXIT_SUCCESS);
 }
 
@@ -61,7 +62,7 @@ static void	mlx_main(t_img *img)
 		exit(EXIT_FAILURE);
 	}
 	img->consumables = 0;
-	img->openExit = 0;
+	img->open_exit = 0;
 	build_map(img, 0, 0);
 }
 

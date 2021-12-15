@@ -6,11 +6,13 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 16:34:07 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/11 13:33:42 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/13 12:37:25 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+#include <stdlib.h> // free
 
 static size_t	ft_uintlen(unsigned int ui)
 {

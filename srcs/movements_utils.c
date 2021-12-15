@@ -6,26 +6,28 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:33:38 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/11 13:32:53 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/15 14:36:21 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
 #include <stdio.h> // printf
+#include <stdlib.h> // EXIT_
 
 /*
 ** Utilitary functions related to movements.
 */
-int	check_ifWall(t_img *img, int x, int y)
+int	check_if_wall(t_img *img, int x, int y)
 {
 	if (img->map[y][x] == '1')
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
-void	check_ifExit(t_img *img, int x, int y)
+void	check_if_exit(t_img *img, int x, int y)
 {
-	if (img->map[y][x] == 'E' && img->openExit == 1)
+	if (img->map[y][x] == 'E' && img->open_exit == 1)
 	{
 		printf("YOU WON!\n\tYour score is %d\n", img->mov_count);
 		printf("\tHigh Score is 999985641351\n");
@@ -33,12 +35,13 @@ void	check_ifExit(t_img *img, int x, int y)
 	}
 }
 
-void	check_ifContact(int x, int y, int ghostX, int ghostY)
+void	check_if_contact(int x, int y, int ghost_x, int ghost_y)
 {
-	if (x == ghostX && y == ghostY)
+	if (x == ghost_x && y == ghost_y)
 	{
 		printf("YOU LOST!\n\tYour score is -1\n");
 		printf("\tHigh Score is 999985641351\n");
+		system("leaks so_long");
 		exit(0);
 	}
 }

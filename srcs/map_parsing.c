@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   map_read.c                                         :+:    :+:            */
+/*   map_parsing.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/10/21 21:21:29 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/10/21 21:21:29 by abeznik       ########   odam.nl         */
+/*   Created: 2021/12/11 17:00:07 by abeznik       #+#    #+#                 */
+/*   Updated: 2021/12/11 17:00:07 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-#include <stdio.h> //printf
+#include <stdio.h> // printf
+#include <stdlib.h> // EXIT_
 
 /*
 ** Function to perform checks: length of lines, presence of walls

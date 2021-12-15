@@ -6,13 +6,11 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/07 17:27:55 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/11 16:57:02 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/15 14:34:27 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-#include <stdio.h> //printf
 
 /*
 ** Function to check if there is at least one E, C and P.
@@ -36,9 +34,8 @@ int	check_g(char **map, int nb_lines)
 		y++;
 	}
 	if (exist_g == 0)
-	{
-		printf("Error\n\tMissing G.\n");
-		return (EXIT_FAILURE);
-	}
-	return (success_msg("\tFound at least one G.\n"));
+		return (error_msg("\tMissing G.\n"));
+	if (exist_g > 1)
+		return (error_msg("\tToo many OG.\n"));
+	return (success_msg("\tFound G.\n"));
 }

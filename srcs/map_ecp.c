@@ -6,13 +6,14 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/07 17:27:55 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/08 17:01:21 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/15 14:34:36 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
 #include <stdio.h> //printf
+#include <stdlib.h> // EXIT_
 
 static int	ret_ecp(int exist_e, int exist_c, int exist_p)
 {
@@ -26,7 +27,11 @@ static int	ret_ecp(int exist_e, int exist_c, int exist_p)
 			printf("Error\n\tMissing P.\n");
 		return (EXIT_FAILURE);
 	}
-	return (success_msg("\tFound at least one E, C and P.\n"));
+	if (exist_e > 1)
+		return (error_msg("\tOnly one E allowed.\n"));
+	if (exist_p > 1)
+		return (error_msg("\tOnly one P allowed.\n"));
+	return (success_msg("\tFound E, C and P.\n"));
 }
 
 /*

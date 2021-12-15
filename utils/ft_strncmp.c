@@ -1,42 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   ft_substr.c                                        :+:    :+:            */
+/*   ft_strncmp.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2020/11/01 11:03:44 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/13 12:37:18 by abeznik       ########   odam.nl         */
+/*   Created: 2021/12/13 11:47:21 by abeznik       #+#    #+#                 */
+/*   Updated: 2021/12/13 11:47:30 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-#include <stdlib.h> // malloc
-
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	char	*buff;
-	size_t	i;
+	int				i;
+	int				j;
+	unsigned char	*str1;
+	unsigned char	*str2;
 
+	str1 = (unsigned char *)s1;
+	str2 = (unsigned char *)s2;
 	i = 0;
-	if (s == NULL)
-		return (NULL);
-	if (start >= (unsigned int)ft_strlen(s))
+	while (n != 0)
 	{
-		buff = (char *)malloc(1);
-		buff[0] = '\0';
-		return (buff);
-	}
-	buff = (char *)malloc(sizeof(char) * (len + 1));
-	if (buff == NULL)
-		return (NULL);
-	while ((len > i) && (s[start] != '\0'))
-	{
-		buff[i] = s[start];
+		if (str1[i] == '\0' && str2[i] == '\0')
+			return (0);
+		if (str1[i] != str2[i])
+		{
+			j = str1[i] - str2[i];
+			return (j);
+		}
 		i++;
-		start++;
+		n--;
 	}
-	buff[i] = '\0';
-	return (buff);
+	return (0);
 }

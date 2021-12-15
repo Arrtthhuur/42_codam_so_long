@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/19 16:13:31 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/11 13:45:40 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/15 13:42:44 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	build_exit(t_img *img, int x, int y)
 	int		img_width;
 	int		img_height;
 
-	img->openExit = 1;
+	img->open_exit = 1;
 	img->img = mlx_xpm_file_to_image(img->mlx, "./images/xpm/cherry.xpm", \
 		&img_width, &img_height);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, x * IMG_SIZE, \

@@ -6,13 +6,15 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2020/11/15 09:15:26 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/11 14:57:18 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/13 12:38:15 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-static char	**ft_freebuff(int j, char **buff)
+#include <stdlib.h> // free, malloc
+
+static char	**ft_free(int j, char **buff)
 {
 	int	i;
 
@@ -87,34 +89,9 @@ char	**ft_split(char const *s, char c)
 	{
 		buff[j] = ft_substr(s, ft_wordcount(s, c, j), ft_wordlength(j, s, c));
 		if (buff[j] == NULL)
-			return (ft_freebuff(j, buff));
+			return (ft_free(j, buff));
 		j++;
 	}
 	buff[j] = NULL;
 	return (buff);
-}
-
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	int				i;
-	int				j;
-	unsigned char	*str1;
-	unsigned char	*str2;
-
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	i = 0;
-	while (n != 0)
-	{
-		if (str1[i] == '\0' && str2[i] == '\0')
-			return (0);
-		if (str1[i] != str2[i])
-		{
-			j = str1[i] - str2[i];
-			return (j);
-		}
-		i++;
-		n--;
-	}
-	return (0);
 }

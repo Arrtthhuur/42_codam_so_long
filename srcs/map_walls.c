@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/07 14:18:52 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/11 13:31:07 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/15 13:39:45 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /*
 ** Function to check if upper and lower lines contain only '1'.
 */
-static int	upper_lowerLines(char **tmp, int len_line, int y)
+static int	upper_lower_lines(char **tmp, int len_line, int y)
 {
 	int	x;
 
@@ -43,7 +43,7 @@ int	check_walls(char **map, int nb_lines, int len_line)
 	{
 		if (y == 0 || y == nb_lines - 1)
 		{
-			if (upper_lowerLines(tmp, len_line, y) == 1)
+			if (upper_lower_lines(tmp, len_line, y) == 1)
 				return (error_msg("\tInvalid upper/lower walls.\n"));
 		}
 		else

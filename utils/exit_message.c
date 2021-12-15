@@ -6,11 +6,14 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/11/08 15:57:26 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/11/08 16:21:55 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/13 12:37:54 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+#include <stdlib.h> // EXIT_
+#include <unistd.h> // write
 
 int	error_msg(char *msg)
 {

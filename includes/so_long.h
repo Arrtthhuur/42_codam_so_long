@@ -16,9 +16,6 @@
 # include "../mlx/mlx.h"
 # include "get_next_line.h"
 
-# include <stdlib.h> //EXIT_
-# include <unistd.h> //write
-
 # define IMG_SIZE 31
 
 typedef struct s_img
@@ -32,13 +29,13 @@ typedef struct s_img
 	int		endian;
 	int		fd1;
 	int		fd2;
-	int		beginX;
-	int		beginY;
-	int		exitX;
-	int		exitY;
-	int		openExit;
-	int		ghostX;
-	int		ghostY;
+	int		begin_x;
+	int		begin_y;
+	int		exit_x;
+	int		exit_y;
+	int		open_exit;
+	int		ghost_x;
+	int		ghost_y;
 	char	**map;
 	int		mov_count;
 	char	*count;
@@ -76,11 +73,11 @@ void	move_right(t_img *img, int x, int y);
 void	move_left(t_img *img, int x, int y);
 void	move_up(t_img *img, int x, int y);
 void	move_down(t_img *img, int x, int y);
-int		check_ifWall(t_img *img, int x, int y);
+int		check_if_wall(t_img *img, int x, int y);
 void	movement_count(t_img *img);
 void	consumable_count(t_img *img, int y, int x);
-void	check_ifExit(t_img *img, int x, int y);
-void	check_ifContact(int x, int y, int ghostX, int ghostY);
+void	check_if_exit(t_img *img, int x, int y);
+void	check_if_contact(int x, int y, int ghost_x, int ghostY);
 
 /*
 ** Ghost movement related functions.
@@ -91,25 +88,22 @@ void	ghost_move_up(t_img *img, int x, int y);
 void	ghost_move_down(t_img *img, int x, int y);
 
 /*
+** Key/mouse press related functions.
+*/
+int		key_hook(int keycode, t_img *img);
+
+/*
 ** Exit succes or error message.
 */
 int		error_msg(char *msg);
 int		success_msg(char *msg);
 
 /*
-** Key/mouse press related functions.
-*/
-int		key_hook(int keycode, t_img *img);
-
-/*
 ** Misc.
 */
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_utoa(unsigned int ui);
 char	**ft_split(char const *s, char c);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-void	*ft_memchr(const void *s, int c, size_t n);
-char	*ft_strdup(const char *s1);
-void	*ft_memmove(void *dst, const void *src, size_t len);
+char	*ft_utoa(unsigned int ui);
 
 #endif
