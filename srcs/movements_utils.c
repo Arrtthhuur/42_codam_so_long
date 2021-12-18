@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:33:38 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/18 13:37:13 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/18 17:23:04 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_if_exit(t_img *img, int x, int y)
 	{
 		printf("YOU WON!\n\tYour score is %d\n", img->mov_count);
 		printf("\tHigh Score is 9999E10\n");
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 }
 
@@ -42,7 +42,7 @@ void	check_if_contact(int x, int y, int ghost_x, int ghost_y)
 	{
 		printf("YOU LOST!\n\tYour score is -1\n");
 		printf("\tHigh Score is 999985641351\n");
-		exit(0);
+		exit(EXIT_SUCCESS);
 	}
 }
 

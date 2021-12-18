@@ -6,7 +6,7 @@
 #    By: abeznik <abeznik@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/10/03 15:23:47 by abeznik       #+#    #+#                  #
-#    Updated: 2021/12/13 11:47:54 by abeznik       ########   odam.nl          #
+#    Updated: 2021/12/18 17:21:42 by abeznik       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,6 @@ SOURCES	=	main.c \
 SRC_DIR	=	srcs
 
 UTILS	=	exit_message.c \
-			ft_split.c \
-			ft_strncmp.c \
-			ft_substr.c \
 			ft_utoa.c \
 			get_next_line.c \
 			get_next_line_utils.c \
