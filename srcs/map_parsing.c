@@ -72,7 +72,7 @@ int	map_read(t_img *img)
 	i = map_first_read(img);
 	map = (char **)malloc(sizeof(map) * (i + 1));
 	if (!map)
-		return (1);
+		return (EXIT_FAILURE);
 	map[y] = get_next_line(img->fd2);
 	line_len = ft_strlen(map[y]);
 	while (map[y])

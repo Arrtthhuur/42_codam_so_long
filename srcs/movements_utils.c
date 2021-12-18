@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:33:38 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/15 15:13:21 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/18 13:18:22 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <stdio.h> // printf
 #include <stdlib.h> // EXIT_
+#include <unistd.h> // sleep
 
 /*
 ** Utilitary functions related to movements.

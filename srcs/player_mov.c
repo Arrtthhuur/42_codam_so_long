@@ -6,15 +6,33 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:33:38 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/15 15:12:54 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/18 13:20:50 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
+#include <stdlib.h> // rand
+
 /*
 ** Player movements related functions.
 */
+void	random_ghost_move(t_img *img, int x, int y)
+{
+	int	r;
+
+	r = 0;
+	r = rand() % 4;
+	if (r == 0)
+		ghost_move_left(img, x, y);
+	if (r == 1)
+		ghost_move_right(img, x, y);
+	if (r == 2)
+		ghost_move_up(img, x, y);
+	if (r == 3)
+		ghost_move_down(img, x, y);
+}
+
 void	move_right(t_img *img, int x, int y)
 {
 	if (!check_if_wall(img, x + 1, y))
@@ -27,9 +45,9 @@ void	move_right(t_img *img, int x, int y)
 		img->begin_x = img->begin_x + 1;
 		build_image("./images/xpm/pill.xpm", img, x, y);
 		movement_count(img);
-		check_if_contact(x + 1, y, img->ghost_x - 1, img->ghost_y);
 	}
-	ghost_move_left(img, img->ghost_x, img->ghost_y);
+	random_ghost_move(img, img->ghost_x, img->ghost_y);
+	check_if_contact(img->begin_x, img->begin_y, img->ghost_x, img->ghost_y);
 }
 
 void	move_left(t_img *img, int x, int y)
@@ -44,9 +62,9 @@ void	move_left(t_img *img, int x, int y)
 		img->begin_x = img->begin_x - 1;
 		build_image("./images/xpm/pill.xpm", img, x, y);
 		movement_count(img);
-		check_if_contact(x - 1, y, img->ghost_x + 1, img->ghost_y);
 	}
-	ghost_move_right(img, img->ghost_x, img->ghost_y);
+	random_ghost_move(img, img->ghost_x, img->ghost_y);
+	check_if_contact(img->begin_x, img->begin_y, img->ghost_x, img->ghost_y);
 }
 
 void	move_up(t_img *img, int x, int y)
@@ -61,9 +79,9 @@ void	move_up(t_img *img, int x, int y)
 		img->begin_y = img->begin_y - 1;
 		build_image("./images/xpm/pill.xpm", img, x, y);
 		movement_count(img);
-		check_if_contact(x, y - 1, img->ghost_x, img->ghost_y + 1);
 	}
-	ghost_move_down(img, img->ghost_x, img->ghost_y);
+	random_ghost_move(img, img->ghost_x, img->ghost_y);
+	check_if_contact(img->begin_x, img->begin_y, img->ghost_x, img->ghost_y);
 }
 
 void	move_down(t_img *img, int x, int y)
@@ -78,7 +96,7 @@ void	move_down(t_img *img, int x, int y)
 		img->begin_y = img->begin_y + 1;
 		build_image("./images/xpm/pill.xpm", img, x, y);
 		movement_count(img);
-		check_if_contact(x, y + 1, img->ghost_x, img->ghost_y - 1);
 	}
-	ghost_move_up(img, img->ghost_x, img->ghost_y);
+	random_ghost_move(img, img->ghost_x, img->ghost_y);
+	check_if_contact(img->begin_x, img->begin_y, img->ghost_x, img->ghost_y);
 }

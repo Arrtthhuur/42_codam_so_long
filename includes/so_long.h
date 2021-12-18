@@ -78,6 +78,7 @@ void	movement_count(t_img *img);
 void	consumable_count(t_img *img, int y, int x);
 void	check_if_exit(t_img *img, int x, int y);
 void	check_if_contact(int x, int y, int ghost_x, int ghostY);
+void	random_ghost_move(t_img *img, int x, int y);
 
 /*
 ** Ghost movement related functions.
