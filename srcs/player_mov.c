@@ -6,33 +6,15 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:33:38 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/18 13:27:15 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/18 16:34:08 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-#include <stdlib.h> // rand
-
 /*
 ** Player movements related functions.
 */
-void	random_ghost_move(t_img *img, int x, int y)
-{
-	int	r;
-
-	r = 0;
-	r = rand() % 4;
-	if (r == 0)
-		ghost_move_left(img, x, y);
-	if (r == 1)
-		ghost_move_right(img, x, y);
-	if (r == 2)
-		ghost_move_up(img, x, y);
-	if (r == 3)
-		ghost_move_down(img, x, y);
-}
-
 void	move_right(t_img *img, int x, int y)
 {
 	if (!check_if_wall(img, x + 1, y))

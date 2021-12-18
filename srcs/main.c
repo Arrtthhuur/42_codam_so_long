@@ -18,7 +18,6 @@
 
 static int	ft_close(void)
 {
-	system("leaks so_long");
 	exit(EXIT_SUCCESS);
 }
 
@@ -50,7 +49,7 @@ static void	check_ber(char *fmap)
 	if (fmap[len - 1] != 'r' || fmap[len - 2] != 'e'
 		|| fmap[len - 3] != 'b' || fmap[len - 4] != '.')
 	{
-		error_msg("\tPlease enter .ber file.\n");
+		error_msg("\tPlease enter *.ber file.\n");
 		exit(EXIT_FAILURE);
 	}
 }

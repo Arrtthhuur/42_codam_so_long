@@ -6,7 +6,7 @@
 /*   By: abeznik <abeznik@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/12/08 13:33:38 by abeznik       #+#    #+#                 */
-/*   Updated: 2021/12/18 13:18:22 by abeznik       ########   odam.nl         */
+/*   Updated: 2021/12/18 13:37:13 by abeznik       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_if_exit(t_img *img, int x, int y)
 	if (img->map[y][x] == 'E' && img->open_exit == 1)
 	{
 		printf("YOU WON!\n\tYour score is %d\n", img->mov_count);
-		printf("\tHigh Score is 999985641351\n");
+		printf("\tHigh Score is 9999E10\n");
 		exit(0);
 	}
 }
