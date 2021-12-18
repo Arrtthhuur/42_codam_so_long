@@ -56,13 +56,6 @@ static void	check_ber(char *fmap)
 
 static void	mlx_main(t_img *img)
 {
-	img->mlx = mlx_init();
-	img->win = mlx_new_window(img->mlx, img->len_line * IMG_SIZE,
-			img->nb_lines * IMG_SIZE, "./so_long");
-	img->img = mlx_new_image(img->mlx, img->len_line * IMG_SIZE,
-			img->nb_lines * IMG_SIZE);
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
-			&img->line_length, &img->endian);
 	mlx_get_screen_size(img->mlx, &img->sizex, &img->sizey);
 	if (img->len_line * IMG_SIZE > img->sizex
 		|| img->nb_lines * IMG_SIZE > img->sizey)
@@ -70,6 +63,13 @@ static void	mlx_main(t_img *img)
 		error_msg("\tMap too big for screen.\n");
 		exit(EXIT_FAILURE);
 	}
+	img->mlx = mlx_init();
+	img->win = mlx_new_window(img->mlx, img->len_line * IMG_SIZE,
+			img->nb_lines * IMG_SIZE, "./so_long");
+	img->img = mlx_new_image(img->mlx, img->len_line * IMG_SIZE,
+			img->nb_lines * IMG_SIZE);
+	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
+			&img->line_length, &img->endian);
 	img->consumables = 0;
 	img->open_exit = 0;
 	build_map(img, 0, 0);

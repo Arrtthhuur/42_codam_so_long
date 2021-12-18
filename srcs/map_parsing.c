@@ -31,7 +31,7 @@ static int	perform_checks(char **map, int nb_lines, int len_line)
 		return (EXIT_FAILURE);
 	if (check_g(map, nb_lines))
 		return (EXIT_FAILURE);
-	printf("The map contains %d lines of %d length.\n", nb_lines, len_line);
+	printf("\nThe map contains %d lines of %d length.\n\n", nb_lines, len_line);
 	return (EXIT_SUCCESS);
 }
 
